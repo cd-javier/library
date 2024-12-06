@@ -33,7 +33,7 @@ function displayBooks() {
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
-    bookPages.textContent = book.pages;
+    bookPages.textContent = book.pages ? book.pages + " pages" : 'Unknown pages';
     bookRead.textContent = book.read ? "read" : "not read";
 
     card.appendChild(bookTitle);
