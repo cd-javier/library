@@ -33,7 +33,9 @@ function displayBooks() {
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
-    bookPages.textContent = book.pages ? book.pages + " pages" : 'Unknown pages';
+    bookPages.textContent = book.pages
+      ? book.pages + " pages"
+      : "Unknown pages";
     bookRead.textContent = book.read ? "read" : "not read";
 
     card.appendChild(bookTitle);
@@ -42,8 +44,6 @@ function displayBooks() {
     card.appendChild(bookRead);
 
     libraryDisplay.appendChild(card);
-
-    console.log(card)
   }
 }
 
@@ -55,7 +55,32 @@ const daisyJones = new Book(
   true
 );
 
-addBookToLibrary(theHusbands, daisyJones)
-
+addBookToLibrary(theHusbands, daisyJones);
 
 displayBooks();
+
+function importBook() {
+  const formTitle = document.querySelector("#title");
+  const formAuthor = document.querySelector("#author");
+  const formPages = document.querySelector("#pages");
+  const formRead = document.querySelector("#read");
+
+  const newBook = new Book(formTitle.value, formAuthor.value, formPages.value, formRead.checked)
+  
+  addBookToLibrary(newBook)
+
+  displayBooks();
+}
+
+const addButton = document.querySelector("button");
+
+addButton.addEventListener("click", importBook);
+
+/* 
+Crear un const para cada elemento del form
+crear un libro con todo lo que se ha añadido
+meter el libro en la librería
+vaciar el display de librería
+volver a llenarlo de nuevo
+vaciar los elementos del form
+*/
