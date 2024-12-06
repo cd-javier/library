@@ -34,9 +34,84 @@ body {
     justify-items: center;
 }
 
+/* FORM */
+
 .form {
     background: var(--neutral);
+
+    padding: 1rem;
 }
+
+.form h2 {
+    text-align: center;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.form .input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    position: relative;
+}
+
+.form .input label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+.form .input input {
+    appearance: none;
+    border: none;
+    outline: none;
+
+    padding: 0.5rem;
+    border-radius: 4px;
+
+    color: var(--neutral-black)
+}
+
+.form .input input:focus {
+    outline: 2px solid var(--neutral-light);
+}
+
+.form .input input + span {
+    position: absolute;
+    right: 0;
+    bottom: -1rem;
+}
+
+.form .input input:user-invalid + span:before {
+    content: "Don't forget this!";
+    
+    color: white;
+    font-size: 0.75rem;
+}
+
+.form .checkbox {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: white;
+}
+
+.form button {
+    appearance: none;
+    border: none;
+    background-color: var(--neutral-light);
+    color: var(--neutral-black);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+/* LIBRARY */
 
 .library {
     display: grid;
