@@ -92,22 +92,24 @@ function clearForm() {
 }
 
 function importBook() {
-  const newBook = new Book(
-    formTitle.value,
-    formAuthor.value,
-    formPages.value,
-    formRead.checked
-  );
+  if (formTitle.value && formAuthor.value) {
+    const newBook = new Book(
+      formTitle.value,
+      formAuthor.value,
+      formPages.value,
+      formRead.checked
+    );
 
-  addBookToLibrary(newBook);
+    addBookToLibrary(newBook);
 
-  clearLibraryDisplay();
-  displayBooks();
-  clearForm();
+    clearLibraryDisplay();
+    displayBooks();
+    clearForm();
+  }
 }
 
 // --------------------------
-//     EVENT LISTENERS
+//      EVENT LISTENERS
 // --------------------------
 
 document.addEventListener("DOMContentLoaded", displayBooks);
