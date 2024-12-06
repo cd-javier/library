@@ -1,3 +1,7 @@
+// --------------------------
+//   BASIC LIBRARY BEHAVIOR
+// --------------------------
+
 const myLibrary = [];
 
 function Book(title, author, pages, read = false) {
@@ -16,7 +20,32 @@ function addBookToLibrary(...books) {
   books.forEach((book) => myLibrary.push(book));
 }
 
+const theHusbands = new Book("The Husbands", "Holly Gramazio", 325, false);
+const daisyJones = new Book(
+  "Daisy Jones & The Six",
+  "Taylor Jenkins Reid",
+  368,
+  true
+);
+
+addBookToLibrary(theHusbands, daisyJones);
+
+// --------------------------
+//      QUERY SELECTORS
+// --------------------------
+
 const libraryDisplay = document.querySelector(".library");
+
+const formTitle = document.querySelector("#title");
+const formAuthor = document.querySelector("#author");
+const formPages = document.querySelector("#pages");
+const formRead = document.querySelector("#read");
+const addButton = document.querySelector("button");
+
+// --------------------------
+//     DOM MANIPULATION
+// --------------------------
+
 function displayBooks() {
   for (let book of myLibrary) {
     const card = document.createElement("div");
@@ -47,53 +76,39 @@ function displayBooks() {
   }
 }
 
-const theHusbands = new Book("The Husbands", "Holly Gramazio", 325, false);
-const daisyJones = new Book(
-  "Daisy Jones & The Six",
-  "Taylor Jenkins Reid",
-  368,
-  true
-);
+// --------------------------
+//     FROM BEHAVIOR
+// --------------------------
 
-addBookToLibrary(theHusbands, daisyJones);
-
-displayBooks();
-
-const formTitle = document.querySelector("#title");
-const formAuthor = document.querySelector("#author");
-const formPages = document.querySelector("#pages");
-const formRead = document.querySelector("#read");
-
-function importBook() {
-  const newBook = new Book(formTitle.value, formAuthor.value, formPages.value, formRead.checked)
-  
-  addBookToLibrary(newBook)
-
-  clearLibraryDisplay();
-  displayBooks();
-  clearForm();
-}
-
-function clearLibraryDisplay () {
+function clearLibraryDisplay() {
   libraryDisplay.innerHTML = "";
 }
 
-function clearForm () {
+function clearForm() {
   formTitle.value = "";
   formAuthor.value = "";
   formPages.value = "";
   formRead.checked = false;
 }
 
-const addButton = document.querySelector("button");
+function importBook() {
+  const newBook = new Book(
+    formTitle.value,
+    formAuthor.value,
+    formPages.value,
+    formRead.checked
+  );
 
+  addBookToLibrary(newBook);
+
+  clearLibraryDisplay();
+  displayBooks();
+  clearForm();
+}
+
+// --------------------------
+//     EVENT LISTENERS
+// --------------------------
+
+document.addEventListener("DOMContentLoaded", displayBooks);
 addButton.addEventListener("click", importBook);
-
-/* 
-Crear un const para cada elemento del form
-crear un libro con todo lo que se ha añadido
-meter el libro en la librería
-vaciar el display de librería
-volver a llenarlo de nuevo
-vaciar los elementos del form
-*/
