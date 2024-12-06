@@ -20,15 +20,25 @@ function addBookToLibrary(...books) {
   books.forEach((book) => myLibrary.push(book));
 }
 
-const theHusbands = new Book("The Husbands", "Holly Gramazio", 325, false);
-const daisyJones = new Book(
-  "Daisy Jones & The Six",
-  "Taylor Jenkins Reid",
-  368,
+const eveningsAndWeekends = new Book(
+  "Evenings and Weekends",
+  "Oisín McKenna",
+  352,
   true
 );
 
-addBookToLibrary(theHusbands, daisyJones);
+const swimmingInTheDark = new Book(
+  "Swimming In The Dark",
+  "Tomasz Jedrowski",
+  256,
+  true
+);
+
+const buryYourGays = new Book("Bury Your Gays", "Chuck Tingle", 304, true);
+
+const lasMalas = new Book("Las Malas", "Camila Sosa Villada", 224, false);
+
+addBookToLibrary(eveningsAndWeekends, swimmingInTheDark, buryYourGays, lasMalas);
 
 // --------------------------
 //      QUERY SELECTORS
