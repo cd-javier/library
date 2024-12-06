@@ -16,8 +16,8 @@ function addBookToLibrary(...books) {
   books.forEach((book) => myLibrary.push(book));
 }
 
+const libraryDisplay = document.querySelector(".library");
 function displayBooks() {
-  const libraryDisplay = document.querySelector(".library");
   for (let book of myLibrary) {
     const card = document.createElement("div");
     const bookTitle = document.createElement("div");
@@ -59,17 +59,30 @@ addBookToLibrary(theHusbands, daisyJones);
 
 displayBooks();
 
-function importBook() {
-  const formTitle = document.querySelector("#title");
-  const formAuthor = document.querySelector("#author");
-  const formPages = document.querySelector("#pages");
-  const formRead = document.querySelector("#read");
+const formTitle = document.querySelector("#title");
+const formAuthor = document.querySelector("#author");
+const formPages = document.querySelector("#pages");
+const formRead = document.querySelector("#read");
 
+function importBook() {
   const newBook = new Book(formTitle.value, formAuthor.value, formPages.value, formRead.checked)
   
   addBookToLibrary(newBook)
 
+  clearLibraryDisplay();
   displayBooks();
+  clearForm();
+}
+
+function clearLibraryDisplay () {
+  libraryDisplay.innerHTML = "";
+}
+
+function clearForm () {
+  formTitle.value = "";
+  formAuthor.value = "";
+  formPages.value = "";
+  formRead.checked = false;
 }
 
 const addButton = document.querySelector("button");
