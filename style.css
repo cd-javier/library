@@ -1,11 +1,11 @@
 @import url(./modern-normalize.css);
 
 :root {
-    --neutral-dark: #6A2E35;
-    --neutral: #BE8A60;
-    --neutral-light: #E1AA7D;
-    --neutral-black: #2E2836;
-    --accent: #B6D094;
+    --neutral-dark: #0f4640;
+    --neutral: #2a9d8f;
+    --neutral-light: #9bded6;
+    --neutral-black: #042a25;
+    --accent: #F5763D;
 }
 
 body {
@@ -74,9 +74,9 @@ body {
 
 .book .author {
     font-size: 1.25rem;
-    font-style: italic;
 }
 
 .book .read {
     text-align: right;
+    font-style: italic;
 }
