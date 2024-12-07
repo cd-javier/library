@@ -71,6 +71,8 @@ function displayBooks() {
     const buttonDelete = document.createElement("button");
     const buttonRead = document.createElement("button");
 
+    card.dataset.libraryIndex = myLibrary.indexOf(book);
+
     card.classList.add("book");
     bookTitle.classList.add("title");
     bookAuthor.classList.add("author");
@@ -79,7 +81,7 @@ function displayBooks() {
     buttonDelete.classList.add("delete-button");
     buttonRead.classList.add("read-button");
     buttonDelete.textContent = "Delete";
-    buttonRead.textContent = book.read ? "Not read" : "Read" ;
+    buttonRead.textContent = book.read ? "Not read" : "Read";
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
@@ -94,7 +96,6 @@ function displayBooks() {
     card.appendChild(bookRead);
     card.appendChild(buttonDelete);
     card.appendChild(buttonRead);
-    
 
     libraryDisplay.appendChild(card);
   }
