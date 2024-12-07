@@ -140,3 +140,13 @@ body {
   text-align: right;
   font-style: italic;
 }
+
+.book button {
+  appearance: none;
+  border: none;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}

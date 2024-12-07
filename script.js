@@ -38,7 +38,12 @@ const buryYourGays = new Book("Bury Your Gays", "Chuck Tingle", 304, true);
 
 const lasMalas = new Book("Las Malas", "Camila Sosa Villada", 224, false);
 
-addBookToLibrary(eveningsAndWeekends, swimmingInTheDark, buryYourGays, lasMalas);
+addBookToLibrary(
+  eveningsAndWeekends,
+  swimmingInTheDark,
+  buryYourGays,
+  lasMalas
+);
 
 // --------------------------
 //      QUERY SELECTORS
@@ -63,12 +68,18 @@ function displayBooks() {
     const bookAuthor = document.createElement("div");
     const bookPages = document.createElement("div");
     const bookRead = document.createElement("div");
+    const buttonDelete = document.createElement("button");
+    const buttonRead = document.createElement("button");
 
     card.classList.add("book");
     bookTitle.classList.add("title");
     bookAuthor.classList.add("author");
     bookPages.classList.add("pages");
     bookRead.classList.add("read");
+    buttonDelete.classList.add("delete-button");
+    buttonRead.classList.add("read-button");
+    buttonDelete.textContent = "Delete";
+    buttonRead.textContent = book.read ? "Not read" : "Read" ;
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
@@ -81,6 +92,9 @@ function displayBooks() {
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
     card.appendChild(bookRead);
+    card.appendChild(buttonDelete);
+    card.appendChild(buttonRead);
+    
 
     libraryDisplay.appendChild(card);
   }
