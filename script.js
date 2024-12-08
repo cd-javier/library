@@ -116,25 +116,17 @@ function refreshLibraryDisplay() {
 //       FROM BEHAVIOR
 // --------------------------
 
-function clearForm() {
-  formTitle.value = "";
-  formAuthor.value = "";
-  formPages.value = "";
-  formRead.checked = false;
-}
-
 function importBook() {
-    const newBook = new Book(
-      formTitle.value,
-      formAuthor.value,
-      formPages.value,
-      formRead.checked
-    );
+  const newBook = new Book(
+    formTitle.value,
+    formAuthor.value,
+    formPages.value,
+    formRead.checked
+  );
 
-    addBookToLibrary(newBook);
+  addBookToLibrary(newBook);
 
-    refreshLibraryDisplay();
-    clearForm();
+  refreshLibraryDisplay();
 }
 
 // --------------------------
@@ -179,5 +171,6 @@ document.addEventListener("DOMContentLoaded", displayBooks);
 
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  importBook()
-})
+  importBook();
+  bookForm.reset();
+});

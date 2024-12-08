@@ -84,6 +84,27 @@ body {
   color: var(--neutral-black);
 }
 
+.form .input input + span {
+  position: absolute;
+  right: 0;
+  bottom: -1rem;
+}
+
+.form .input input + span::before {
+  content: "* Fill this field to continue";
+  font-size: 0.75rem;
+  font-weight: 200;
+
+  visibility: hidden;
+  
+}
+
+.form .input input:user-invalid + span::before {
+  visibility: visible;
+}
+
+
+
 .form .input input:focus {
   outline: 2px solid var(--neutral-dark);
 }
