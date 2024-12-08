@@ -23,6 +23,12 @@ body {
     "form library";
 }
 
+@media (min-width: 1200px) {
+  .wrapper {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
 .header {
   background-color: var(--neutral-dark);
   color: white;
