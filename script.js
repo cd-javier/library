@@ -10,9 +10,8 @@ function Book(title, author, pages, read = false) {
   this.pages = pages;
   this.read = read;
 
-  this.info = function () {
-    const hasRead = () => (read ? "read" : "not read yet");
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${hasRead()}`;
+  this.toggleRead = function () {
+    this.read = !this.read;
   };
 }
 
@@ -57,6 +56,8 @@ const formPages = document.querySelector("#pages");
 const formRead = document.querySelector("#read");
 const addButton = document.querySelector("button");
 
+const bookCards = libraryDisplay.getElementsByClassName("book");
+
 // --------------------------
 //     DOM MANIPULATION
 // --------------------------
@@ -99,15 +100,22 @@ function displayBooks() {
 
     libraryDisplay.appendChild(card);
   }
-}
 
-// --------------------------
-//     FROM BEHAVIOR
-// --------------------------
+  enableButtonBehavior();
+}
 
 function clearLibraryDisplay() {
   libraryDisplay.innerHTML = "";
 }
+
+function refreshLibraryDisplay() {
+  clearLibraryDisplay();
+  displayBooks();
+}
+
+// --------------------------
+//       FROM BEHAVIOR
+// --------------------------
 
 function clearForm() {
   formTitle.value = "";
@@ -127,10 +135,37 @@ function importBook() {
 
     addBookToLibrary(newBook);
 
-    clearLibraryDisplay();
-    displayBooks();
+    refreshLibraryDisplay();
     clearForm();
   }
+}
+
+// --------------------------
+//      BUTTON BEHAVIOR
+// --------------------------
+
+function deleteBook(i) {
+  myLibrary.splice(i, 1);
+  refreshLibraryDisplay();
+}
+
+function enableButtonBehavior() {
+  Array.from(bookCards).forEach((book) => {
+    const i = book.dataset.libraryIndex;
+    const deleteButton = book.querySelector(".delete-button");
+    const readButton = book.querySelector(".read-button");
+    const currentBook = myLibrary[i];
+
+    deleteButton.addEventListener("click", () => {
+      myLibrary.splice(i, 1);
+      refreshLibraryDisplay();
+    });
+
+    readButton.addEventListener("click", () => {
+      currentBook.toggleRead();
+      refreshLibraryDisplay();
+    });
+  });
 }
 
 // --------------------------
