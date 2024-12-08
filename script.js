@@ -4,6 +4,7 @@
 
 const myLibrary = [];
 
+// Book Constructor
 function Book(title, author, pages, read = false) {
   this.title = title;
   this.author = author;
@@ -15,27 +16,28 @@ function Book(title, author, pages, read = false) {
   };
 }
 
+// Add book to library
 function addBookToLibrary(...books) {
   books.forEach((book) => myLibrary.push(book));
 }
 
+// Populate the library with default books
 const eveningsAndWeekends = new Book(
   "Evenings and Weekends",
   "Oisín McKenna",
   352,
   true
 );
-
 const swimmingInTheDark = new Book(
   "Swimming In The Dark",
   "Tomasz Jedrowski",
   256,
   true
 );
-
 const buryYourGays = new Book("Bury Your Gays", "Chuck Tingle", 304, true);
 const lasMalas = new Book("Las Malas", "Camila Sosa Villada", 224, false);
 
+// Add default books to the library
 addBookToLibrary(
   eveningsAndWeekends,
   swimmingInTheDark,
@@ -61,8 +63,10 @@ const bookCards = libraryDisplay.getElementsByClassName("book");
 //     DOM MANIPULATION
 // --------------------------
 
+// Display each book in the library
 function displayBooks() {
   for (let book of myLibrary) {
+    // Create book card and its contents
     const card = document.createElement("div");
     const bookTitle = document.createElement("div");
     const bookAuthor = document.createElement("div");
@@ -71,8 +75,10 @@ function displayBooks() {
     const buttonDelete = document.createElement("button");
     const buttonRead = document.createElement("button");
 
+    // Give a data value to each card with its index in the library
     card.dataset.libraryIndex = myLibrary.indexOf(book);
 
+    // Give classes to all the elements
     card.classList.add("book");
     bookTitle.classList.add("title");
     bookAuthor.classList.add("author");
@@ -80,9 +86,12 @@ function displayBooks() {
     bookRead.classList.add("read");
     buttonDelete.classList.add("delete-button");
     buttonRead.classList.add("read-button");
+
+    // Add text to the buttons
     buttonDelete.textContent = "Delete";
     buttonRead.textContent = book.read ? "Mark as unread" : "Mark as read";
 
+    // Add text to the elements
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
     bookPages.textContent = book.pages
@@ -90,6 +99,7 @@ function displayBooks() {
       : "Unknown pages";
     bookRead.textContent = book.read ? "read" : "not read";
 
+    // Build the card
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
@@ -97,25 +107,25 @@ function displayBooks() {
     card.appendChild(buttonDelete);
     card.appendChild(buttonRead);
 
+    // Display the card in the library
     libraryDisplay.appendChild(card);
   }
 
+  // Enable delete and read buttons
   enableButtonBehavior();
 }
 
-function clearLibraryDisplay() {
-  libraryDisplay.innerHTML = "";
-}
-
+// Refresh the content of the library
 function refreshLibraryDisplay() {
-  clearLibraryDisplay();
+  libraryDisplay.innerHTML = "";
   displayBooks();
 }
 
 // --------------------------
-//       FROM BEHAVIOR
+//       FROM HANDLING
 // --------------------------
 
+// Creates a book from the values in the form
 function importBook() {
   const newBook = new Book(
     formTitle.value,
@@ -124,41 +134,45 @@ function importBook() {
     formRead.checked
   );
 
+  // Adds the book to the library
   addBookToLibrary(newBook);
-
-  refreshLibraryDisplay();
 }
+
+// Submit the form
+bookForm.addEventListener("submit", (e) => {
+  e.preventDefault(); // Prevents the default behavior of the form
+  importBook();
+  refreshLibraryDisplay(); // Refreshes the display
+  bookForm.reset(); // Resets the form
+});
 
 // --------------------------
 //      BUTTON BEHAVIOR
 // --------------------------
 
-function deleteBook(i) {
-  myLibrary.splice(i, 1);
-  refreshLibraryDisplay();
-}
-
+// Enables the behavior of the Delete and Read buttons
 function enableButtonBehavior() {
   Array.from(bookCards).forEach((book) => {
-    const i = book.dataset.libraryIndex;
+    const i = book.dataset.libraryIndex; // Finds the index in the library of the book
     const deleteButton = book.querySelector(".delete-button");
     const readButton = book.querySelector(".read-button");
     const currentBook = myLibrary[i];
 
     deleteButton.addEventListener("click", () => {
       if (
+        // Prompt to confirm that the user wants to delete
         confirm(
           `Are you sure you want to delete ${currentBook.title} from your library?`
         )
       ) {
-        myLibrary.splice(i, 1);
-        refreshLibraryDisplay();
+        myLibrary.splice(i, 1); // Removes the book from the library
+        refreshLibraryDisplay(); // Refreshes the display
       }
     });
 
     readButton.addEventListener("click", () => {
-      currentBook.toggleRead();
-      refreshLibraryDisplay();
+      currentBook.toggleRead(); // Toggles the 'read' property
+      refreshLibraryDisplay(); // Refreshes the display
     });
   });
 }
@@ -167,10 +181,5 @@ function enableButtonBehavior() {
 //      EVENT LISTENERS
 // --------------------------
 
+// Displays the books when the page loads
 document.addEventListener("DOMContentLoaded", displayBooks);
-
-bookForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  importBook();
-  bookForm.reset();
-});
