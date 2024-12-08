@@ -34,7 +34,6 @@ const swimmingInTheDark = new Book(
 );
 
 const buryYourGays = new Book("Bury Your Gays", "Chuck Tingle", 304, true);
-
 const lasMalas = new Book("Las Malas", "Camila Sosa Villada", 224, false);
 
 addBookToLibrary(
@@ -54,7 +53,7 @@ const formTitle = document.querySelector("#title");
 const formAuthor = document.querySelector("#author");
 const formPages = document.querySelector("#pages");
 const formRead = document.querySelector("#read");
-const addButton = document.querySelector("button");
+const bookForm = document.querySelector("#new-book");
 
 const bookCards = libraryDisplay.getElementsByClassName("book");
 
@@ -82,7 +81,7 @@ function displayBooks() {
     buttonDelete.classList.add("delete-button");
     buttonRead.classList.add("read-button");
     buttonDelete.textContent = "Delete";
-    buttonRead.textContent = book.read ? "Not read" : "Read";
+    buttonRead.textContent = book.read ? "Mark as unread" : "Mark as read";
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
@@ -125,7 +124,6 @@ function clearForm() {
 }
 
 function importBook() {
-  if (formTitle.value && formAuthor.value) {
     const newBook = new Book(
       formTitle.value,
       formAuthor.value,
@@ -137,7 +135,6 @@ function importBook() {
 
     refreshLibraryDisplay();
     clearForm();
-  }
 }
 
 // --------------------------
@@ -179,4 +176,8 @@ function enableButtonBehavior() {
 // --------------------------
 
 document.addEventListener("DOMContentLoaded", displayBooks);
-addButton.addEventListener("click", importBook);
+
+bookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  importBook()
+})
