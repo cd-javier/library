@@ -45,6 +45,21 @@ addBookToLibrary(
   lasMalas
 );
 
+// Library stats
+function getTotalCount() {
+  return myLibrary.length;
+}
+
+function getReadCount() {
+  const readBooks = myLibrary.filter((book) => book.read);
+  return readBooks.length;
+}
+
+function getUnreadCount() {
+  const unreadBooks = myLibrary.filter((book) => !book.read);
+  return unreadBooks.length;
+}
+
 // --------------------------
 //      QUERY SELECTORS
 // --------------------------
@@ -111,6 +126,9 @@ function displayBooks() {
     libraryDisplay.appendChild(card);
   }
 
+  // Refresh stats
+  addStats();
+
   // Enable delete and read buttons
   enableButtonBehavior();
 }
@@ -119,6 +137,17 @@ function displayBooks() {
 function refreshLibraryDisplay() {
   libraryDisplay.innerHTML = "";
   displayBooks();
+}
+
+// Add stats
+function addStats() {
+  const totalCount = document.getElementById("total-count");
+  const readCount = document.getElementById("read-count");
+  const unreadCount = document.getElementById("unread-count");
+
+  totalCount.textContent = getTotalCount();
+  readCount.textContent = getReadCount();
+  unreadCount.textContent = getUnreadCount();
 }
 
 // --------------------------

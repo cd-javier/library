@@ -2,7 +2,7 @@
 
 :root {
   --neutral-light: #F5F5F5;
-  --neutral-black: #2b1911;
+  --neutral-black: #040a22;
   --primary: #2049fd;
   --accent: #fdd420;
   --shadow: 0 2px 4px #0001;
@@ -70,18 +70,23 @@ body {
   border-radius: 4px;
   box-shadow: var(--shadow);
 
-  padding: 1rem;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .form h2 {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .form form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: 2rem;
 }
 
 .form .input {
@@ -149,6 +154,18 @@ body {
   border: none;
   padding: 0.5rem;
   border-radius: 4px;
+}
+
+/* STATS */
+
+.stats {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  font-weight: 200;
+
 }
 
 /* LIBRARY */
