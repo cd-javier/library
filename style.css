@@ -1,10 +1,10 @@
 @import url(./modern-normalize.css);
 
 :root {
-  --neutral-dark: #0f4640;
-  --neutral: #2a9d8f;
-  --neutral-light: #9bded6;
-  --neutral-black: #042a25;
+  --neutral-dark: #442110;
+  --neutral: #a57159;
+  --neutral-light: #e5cabe;
+  --neutral-black: #2b1911;
   --accent: #f5763d;
 }
 
@@ -79,7 +79,7 @@ body {
 }
 
 .form .input input:focus {
-  outline: 2px solid var(--neutral-light);
+  outline: 2px solid var(--neutral-dark);
 }
 
 .form .checkbox {
@@ -115,6 +115,8 @@ body {
   border-top: 6px solid var(--accent);
   padding: 1rem;
 
+  box-shadow: 0 2px 4px #0001;
+
   display: grid;
   align-content: center;
   gap: 0.5rem;
@@ -148,5 +150,5 @@ body {
   color: white;
   padding: 0.5rem;
   border-radius: 4px;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
