@@ -157,8 +157,14 @@ function enableButtonBehavior() {
     const currentBook = myLibrary[i];
 
     deleteButton.addEventListener("click", () => {
-      myLibrary.splice(i, 1);
-      refreshLibraryDisplay();
+      if (
+        confirm(
+          `Are you sure you want to delete ${currentBook.title} from your library?`
+        )
+      ) {
+        myLibrary.splice(i, 1);
+        refreshLibraryDisplay();
+      }
     });
 
     readButton.addEventListener("click", () => {
