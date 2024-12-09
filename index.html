@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The R&B Book Club Library</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
     <div class="wrapper">
@@ -13,7 +15,7 @@
             <h1>The R&B Book Club Library</h1>
             <p>Enjoying queer fiction since 2024</p>
         </div>
-        <div class="form">
+        <div class="form hidden">
             <h2>New Book</h2>
             <form id="new-book">
                 <div class="input">
@@ -36,6 +38,7 @@
                     <label for="read">I have read this book</label>
                 </div>
                 <button>Add book</button>
+                <button type="button" class="cancel-button">Cancel</button>
             </form>
             <div class="stats">
                 <div class="stat">Total: <span id="total-count"></span></div>
@@ -46,7 +49,14 @@
         <div class="library">
         </div>
     </div>
-    
+    <div class="new-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+        </svg>
+    </div>
+    <div class="overlay hidden"></div>
+
     <script src="./script.js"></script>
 </body>
+
 </html>

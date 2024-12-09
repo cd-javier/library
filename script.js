@@ -225,3 +225,30 @@ function enableButtonBehavior() {
 
 // Displays the books when the page loads
 document.addEventListener("DOMContentLoaded", displayBooks);
+
+// --------------------------
+//       MOBILE FORM
+// --------------------------
+
+const newBtn = document.querySelector(".new-button");
+const formArea = document.querySelector(".form");
+const overlay = document.querySelector(".overlay");
+const cancelBtn = document.querySelector(".cancel-button");
+
+// Show-Hide form overlay
+function showForm() {
+  formArea.classList.toggle("hidden");
+  overlay.classList.toggle("hidden");
+}
+
+newBtn.addEventListener("click", showForm);
+cancelBtn.addEventListener("click", () => {
+  bookForm.reset();
+  showForm();
+});
+
+// Close overlay when submitting form
+bookForm.addEventListener("submit", () => {
+  formArea.classList.add("hidden");
+  overlay.classList.add("hidden");
+});
