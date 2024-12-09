@@ -1,7 +1,7 @@
 @import url(./modern-normalize.css);
 
 :root {
-  --neutral-light: #F5F5F5;
+  --neutral-light: #f5f5f5;
   --neutral-black: #040a22;
   --primary: #2049fd;
   --accent: #fdd420;
@@ -165,7 +165,6 @@ body {
   align-items: flex-end;
 
   font-weight: 200;
-
 }
 
 /* LIBRARY */
@@ -175,7 +174,8 @@ body {
   gap: 1rem;
 
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-auto-rows: minmax(12rem, 1fr);
 }
 
 .book {
@@ -188,10 +188,11 @@ body {
   box-shadow: var(--shadow);
 
   display: grid;
-  align-content: center;
   gap: 0.5rem;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: min-content 1fr;
+
+  position: relative;
 }
 
 .book .title,
@@ -208,6 +209,11 @@ body {
   font-size: 1.25rem;
 }
 
+.book .pages,
+.book .read {
+  font-weight: 200;
+}
+
 .book .read {
   text-align: right;
   font-style: italic;
@@ -218,7 +224,15 @@ body {
   border: none;
   padding: 0.5rem;
   border-radius: 4px;
-  margin-top: 0.5rem;
+}
+
+.bookmark {
+  position: absolute;
+  right: 1rem;
+}
+
+.bookmark svg {
+  fill: var(--primary);
 }
 
 button {

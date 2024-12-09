@@ -35,7 +35,12 @@ const swimmingInTheDark = new Book(
   true
 );
 const buryYourGays = new Book("Bury Your Gays", "Chuck Tingle", 304, true);
-const lasMalas = new Book("Las Malas", "Camila Sosa Villada", 224, false);
+const lasMalas = new Book(
+  "Bad Girls (Las Malas)",
+  "Camila Sosa Villada",
+  224,
+  false
+);
 
 // Add default books to the library
 addBookToLibrary(
@@ -114,6 +119,13 @@ function displayBooks() {
       : "Unknown pages";
     bookRead.textContent = book.read ? "read" : "not read";
 
+    // Create the read bookmark
+    const bookmark = document.createElement("div");
+    bookmark.classList.add("bookmark");
+    bookmark.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="30" viewBox="0 0 23 30" fill="none">
+<path d="M0 30V3.33336C0 2.4167 4.33295e-06 0 4.33295e-06 0C4.33295e-06 0 2.38319 0.0011424 3.28564 3.12924e-05C3.28564 3.12924e-05 18.8103 3.12924e-05 19.7139 3.12924e-05C20.6174 3.12924e-05 22.9995 9.46719e-05 22.9995 9.46719e-05C22.9995 9.46719e-05 23.0006 2.41781 22.9995 3.33336V30L11.4998 25L0 30Z" />
+</svg>`;
+
     // Build the card
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
@@ -121,6 +133,7 @@ function displayBooks() {
     card.appendChild(bookRead);
     card.appendChild(buttonDelete);
     card.appendChild(buttonRead);
+    if (book.read) card.appendChild(bookmark);
 
     // Display the card in the library
     libraryDisplay.appendChild(card);
