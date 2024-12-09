@@ -58,6 +58,7 @@ body {
 
   font-style: italic;
   font-weight: 200;
+  text-align: right;
 
   color: var(--primary);
 }
@@ -279,8 +280,13 @@ button.cancel-button {
 
   .header {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
     gap: 1rem;
+  }
+
+  .header h1,
+  .header p {
+    text-align: center;
   }
 
   .form {
