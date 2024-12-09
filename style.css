@@ -212,6 +212,7 @@ body {
 .book .pages,
 .book .read {
   font-weight: 200;
+  padding-bottom: 0.5rem;
 }
 
 .book .read {
