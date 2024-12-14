@@ -5,15 +5,16 @@
 const myLibrary = [];
 
 // Book Constructor
-function Book(title, author, pages, read = false) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-
-  this.toggleRead = function () {
+class Book {
+  constructor (title, author, pages, read = false) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  toggleRead() {
     this.read = !this.read;
-  };
+  }
 }
 
 // Add book to library
