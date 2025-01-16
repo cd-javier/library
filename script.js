@@ -76,7 +76,6 @@ const formTitle = document.querySelector('#title');
 const formAuthor = document.querySelector('#author');
 const formPages = document.querySelector('#pages');
 const formRead = document.querySelector('#read');
-const bookForm = document.forms['new-book'];
 
 const bookCards = libraryDisplay.getElementsByClassName('book');
 
@@ -165,8 +164,9 @@ function addStats() {
 }
 
 // --------------------------
-//       FROM HANDLING
+//       FORM HANDLING
 // --------------------------
+const bookForm = document.forms['new-book'];
 const inputTitle = bookForm.elements['title'];
 const inputAuthor = bookForm.elements['author'];
 const inputPages = bookForm.elements['pages'];
@@ -175,10 +175,11 @@ const inputRead = bookForm.elements['read'];
 function validateTitleInput() {
   const titleError = bookForm.querySelector('#title + span');
 
-  inputTitle.setCustomValidity(' ');
+  inputTitle.setCustomValidity('');
   titleError.textContent = '';
-
+  
   if (inputTitle.validity.valueMissing) {
+    inputTitle.setCustomValidity(' ');
     titleError.textContent = '* Add a title to continue';
   }
 }
@@ -186,10 +187,11 @@ function validateTitleInput() {
 function validateAuthorInput() {
   const authorError = bookForm.querySelector('#author + span');
 
-  inputAuthor.setCustomValidity(' ');
+  inputAuthor.setCustomValidity('');
   authorError.textContent = '';
-
+  
   if (inputAuthor.validity.valueMissing) {
+    inputAuthor.setCustomValidity(' ');
     authorError.textContent = '* Add an author to continue';
   }
 }
@@ -197,12 +199,14 @@ function validateAuthorInput() {
 function validatePagesInput() {
   const pagesError = bookForm.querySelector('#pages + span');
 
-  inputPages.setCustomValidity(' ');
+  inputPages.setCustomValidity('');
   pagesError.textContent = '';
-
+  
   if (inputPages.validity.valueMissing) {
+    inputPages.setCustomValidity(' ');
     pagesError.textContent = '* Add pages to continue';
   } else if (inputPages.validity.patternMismatch) {
+    inputPages.setCustomValidity(' ');
     pagesError.textContent = '* Only numbers are allowed';
   }
 }
@@ -210,7 +214,7 @@ function validatePagesInput() {
 function submitForm(e) {
   e.preventDefault(); // Prevents the default behavior of the form
 
-  if (!bookForm.checkValidity()) {
+  if (bookForm.checkValidity()) {
     importBook(
       inputTitle.value,
       inputAuthor.value,
