@@ -123,12 +123,12 @@ body {
   font-weight: 200;
 }
 
-.form .input input + span::before {
-}
-
-
 .form .input input:focus {
   outline: 1px solid var(--primary);
+}
+
+.form .input input:user-invalid {
+  background-color: #FFEBEE;
 }
 
 .form .checkbox {
