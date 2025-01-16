@@ -177,7 +177,7 @@ function validateTitleInput() {
 
   inputTitle.setCustomValidity('');
   titleError.textContent = '';
-  
+
   if (inputTitle.validity.valueMissing) {
     inputTitle.setCustomValidity(' ');
     titleError.textContent = '* Add a title to continue';
@@ -189,7 +189,7 @@ function validateAuthorInput() {
 
   inputAuthor.setCustomValidity('');
   authorError.textContent = '';
-  
+
   if (inputAuthor.validity.valueMissing) {
     inputAuthor.setCustomValidity(' ');
     authorError.textContent = '* Add an author to continue';
@@ -201,7 +201,7 @@ function validatePagesInput() {
 
   inputPages.setCustomValidity('');
   pagesError.textContent = '';
-  
+
   if (inputPages.validity.valueMissing) {
     inputPages.setCustomValidity(' ');
     pagesError.textContent = '* Add pages to continue';
@@ -234,13 +234,18 @@ function importBook(title, author, pages, read) {
   addBookToLibrary(newBook);
 }
 
-// Validate form values
+// Submit the form
+bookForm.addEventListener('submit', submitForm);
+
+// Live input validation
 inputTitle.addEventListener('input', validateTitleInput);
 inputAuthor.addEventListener('input', validateAuthorInput);
 inputPages.addEventListener('input', validatePagesInput);
 
-// Submit the form
-bookForm.addEventListener('submit', submitForm);
+// Submit input validation
+inputTitle.addEventListener('invalid', validateTitleInput);
+inputAuthor.addEventListener('invalid', validateAuthorInput);
+inputPages.addEventListener('invalid', validatePagesInput);
 
 // --------------------------
 //      BUTTON BEHAVIOR
