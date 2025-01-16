@@ -119,26 +119,13 @@ body {
   position: absolute;
   right: 0;
   bottom: -1rem;
+  font-size: 0.75rem;
+  font-weight: 200;
 }
 
 .form .input input + span::before {
-  font-size: 0.75rem;
-  font-weight: 200;
-
-  visibility: hidden;
 }
 
-.form .input input:user-invalid + span::before {
-  visibility: visible;
-}
-
-.form .input input[type="text"] + span::before {
-  content: "* Please fill this field to continue";
-}
-
-.form .input input[type="tel"] + span::before {
-  content: "* Please only input numbers";
-}
 
 .form .input input:focus {
   outline: 1px solid var(--primary);

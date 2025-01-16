@@ -21,17 +21,17 @@
                 <div class="input">
                     <label for="title">TITLE</label>
                     <input type="text" name="title" id="title" required>
-                    <span></span>
+                    <span class="error-message"></span>
                 </div>
                 <div class="input">
                     <label for="author">AUTHOR</label>
                     <input type="text" name="author" id="author" required>
-                    <span></span>
+                    <span class="error-message"></span>
                 </div>
                 <div class="input">
                     <label for="pages">PAGES</label>
-                    <input type="tel" name="pages" id="pages" pattern="([0-9])+">
-                    <span></span>
+                    <input type="tel" name="pages" id="pages" pattern="([0-9])+" required>
+                    <span class="error-message"></span>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" name="read" id="read" value="true">
