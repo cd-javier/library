@@ -22,35 +22,6 @@ function addBookToLibrary(...books) {
   books.forEach((book) => myLibrary.push(book));
 }
 
-// Populate the library with default books
-const eveningsAndWeekends = new Book(
-  'Evenings and Weekends',
-  'Oisín McKenna',
-  352,
-  true
-);
-const swimmingInTheDark = new Book(
-  'Swimming In The Dark',
-  'Tomasz Jedrowski',
-  256,
-  true
-);
-const buryYourGays = new Book('Bury Your Gays', 'Chuck Tingle', 304, true);
-const lasMalas = new Book(
-  'Bad Girls (Las Malas)',
-  'Camila Sosa Villada',
-  224,
-  false
-);
-
-// Add default books to the library
-addBookToLibrary(
-  eveningsAndWeekends,
-  swimmingInTheDark,
-  buryYourGays,
-  lasMalas
-);
-
 // Library stats
 function getTotalCount() {
   return myLibrary.length;
@@ -279,11 +250,63 @@ function enableButtonBehavior() {
 }
 
 // --------------------------
-//      EVENT LISTENERS
+//       LOCAL STORAGE
 // --------------------------
 
-// Displays the books when the page loads
-document.addEventListener('DOMContentLoaded', displayBooks);
+function loadLibrary() {
+  if (localStorage.myLibrary && JSON.parse(localStorage.myLibrary).length > 0) {
+    // If there is a local storage
+    const loadedLibrary = JSON.parse(localStorage.myLibrary);
+    loadedLibrary.forEach((book) => {
+      // Imports each book into the library
+      Object.setPrototypeOf(book, new Book());
+      addBookToLibrary(book);
+    });
+  } else {
+    // Create default books
+    const eveningsAndWeekends = new Book(
+      'Evenings and Weekends',
+      'Oisín McKenna',
+      352,
+      true
+    );
+    const swimmingInTheDark = new Book(
+      'Swimming In The Dark',
+      'Tomasz Jedrowski',
+      256,
+      true
+    );
+    const buryYourGays = new Book('Bury Your Gays', 'Chuck Tingle', 304, true);
+    const lasMalas = new Book(
+      'Bad Girls (Las Malas)',
+      'Camila Sosa Villada',
+      224,
+      false
+    );
+
+    // Add default books to the library
+    addBookToLibrary(
+      eveningsAndWeekends,
+      swimmingInTheDark,
+      buryYourGays,
+      lasMalas
+    );
+  }
+
+  displayBooks();
+}
+
+function saveLibrary() {
+  // Saves the library to the local storage
+  localStorage.myLibrary = JSON.stringify(myLibrary);
+}
+
+// --------------------------
+//  INIT AND FIN LISTENERS
+// --------------------------
+
+document.addEventListener('DOMContentLoaded', loadLibrary);
+window.addEventListener('visibilitychange', saveLibrary);
 
 // --------------------------
 //       MOBILE FORM
