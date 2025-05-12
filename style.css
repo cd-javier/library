@@ -11,16 +11,20 @@
 body {
   background-color: var(--neutral-light);
   color: var(--neutral-black);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
 }
 
 .wrapper {
-  min-height: 100vh;
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "header header"
-    "form library";
+    'header header'
+    'form library';
 
   gap: 1rem;
   padding: 1rem;
@@ -128,7 +132,7 @@ body {
 }
 
 .form .input input:user-invalid {
-  background-color: #FFEBEE;
+  background-color: #ffebee;
 }
 
 .form .checkbox {
@@ -258,11 +262,23 @@ button.cancel-button {
   visibility: hidden;
 }
 
+.signature {
+  font-size: 0.75rem;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.signature a {
+  color: inherit;
+}
+
 @media (max-width: 700px) {
   .wrapper {
     grid-template-areas:
-      "header header"
-      "library library";
+      'header header'
+      'library library';
   }
 
   .header {
@@ -305,10 +321,14 @@ button.cancel-button {
 
   .new-button,
   .cancel-button {
-    visibility:inherit !important;
+    visibility: inherit !important;
   }
 
   .hidden {
     visibility: hidden;
+  }
+
+  .signature {
+    display: none;
   }
 }
